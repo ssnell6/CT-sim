@@ -16,5 +16,5 @@ The directory structure is nested because multiple experiments were run using th
 - Results
   - EXP4 - examples: A single example output file for one run of the simulation using the conditions disperal kernel 4 and habitat heterogeneity 0.5. Each set of conditions was run for 50 runs. See above for location of the full output.
   - Summary - examples: A single summary file generated from the visualize simulation script, at both the pixel level across species (d-g4_hp-0.5_summary), and for each species (pixel_xclass_summary_bysp). Each set of conditions was summarized, see above for location of the full output.
-  - Plots - plots created by the visualization script using the summarized output, in PDF form. 
+  - Plots: plots created by the visualization script using the summarized output, in PDF form. 
   
