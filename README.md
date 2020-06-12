@@ -9,6 +9,8 @@ Full output: XXXX
 ## Directory structure
 The directory structure is nested because multiple experiments were run using this package, so the nestedness of the master repository has been preserved to demonstrate how this experiment (EXP4) fits into the larger core-transient-simulation repository. However, the manuscript only covers the analysis of a single experiment, thus why this repository is distinct from the master repository.
 
+Our full output had to be stored elsewhere, as file size was too large to accommodate on GitHub.
+
 - Code
   - Parameters: nested folder containing the parameters used to set the simulation's initial and summary parameters for each set of dispersal kernels
   - Scripts: visualization scripts for the main analysis (disperal kernel 4), as well as supplementary material (dispersal kernel 2, 8). The script summarizes the output from the simulation in order to create the plots in the manuscript.
