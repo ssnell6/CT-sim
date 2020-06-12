@@ -12,7 +12,7 @@ The directory structure is nested because multiple experiments were run using th
 Our full output had to be stored elsewhere, as file size was too large to accommodate on GitHub.
 
 - Code
-  - Parameters: nested folder containing the parameters used to set the simulation's initial and summary parameters for each set of dispersal kernels
+  - Parameters: nested folder containing the parameters used to set the simulation's initial and summary parameters for each set of dispersal kernels. The CTSim package runs the simulation using these initial parameter files to generate the results summarized in the visualization script.
   - Scripts: visualization scripts for the main analysis (disperal kernel 4), as well as supplementary material (dispersal kernel 2, 8). The script summarizes the output from the simulation in order to create the plots in the manuscript.
 
 - Results
