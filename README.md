@@ -14,9 +14,9 @@ Our full output had to be stored elsewhere, as file size was too large to accomm
 - Code
   - Parameters: nested folder containing the parameters used to set the simulation's initial and summary parameters for each set of dispersal kernels. The CTSim package runs the simulation using these initial parameter files to generate the results summarized in the visualization script.
   - Scripts: 
-  - make_parmfiles: generates the initial parameter files given a set of inputs of interest
-  - exp4_submit_run.txt: example terminal commands to run simulation on a server.
-  - visualize_sim_EXP4_experiment: visualization scripts for the main analysis (disperal kernel 4), as well as supplementary material (dispersal kernel 2, 8). The script summarizes the output from the simulation in order to create the plots in the manuscript.
+    - make_parmfiles: generates the initial parameter files given a set of inputs of interest
+    - exp4_submit_run.txt: example terminal commands to run simulation on a server.
+    - visualize_sim_EXP4_experiment: visualization scripts for the main analysis (disperal kernel 4), as well as supplementary material (dispersal kernel 2, 8). The script summarizes the output from the simulation in order to create the plots in the manuscript.
 
 - Results
   - EXP4 - examples: A single example output file for one run of the simulation using the conditions disperal kernel 4 and habitat heterogeneity 0.5. Each set of conditions was run for 50 runs. See above for location of the full output.
