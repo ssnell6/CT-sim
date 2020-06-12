@@ -2,7 +2,7 @@
 
 This project utilizes the package built by Jessica Coyle to investigate the relationship between detection, landscape similarity, and temporal occupancy with simulated species. 
 
-Package repository: https://github.com/hurlbertlab/core-transient-simulation
+Master repository containing CTSim package and previous experiment results: https://github.com/hurlbertlab/core-transient-simulation
 
 Full output: XXXX
 
