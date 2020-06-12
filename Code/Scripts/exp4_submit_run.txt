@@ -1,0 +1,37 @@
+module load r/3.4.1
+for d in g1 g2 g4 g8 ;  
+do sbatch -J $d --time=3-0 --mem=10G --ntasks=4 --wrap="R CMD BATCH \"--args 4 
+./Code/Parameters/EXP4/d-${d}/ ./Results/Summary/EXP4/ ~/R/x86_64-pc-linux-gnu-library/3.4/ 50\" 
+./Code/CTSim/exec/run_simulation.R EXP4_d-${d}.Rout";  done
+
+for d in g1 g2 g4 g8 ; 
+do sbatch -J $d --time=7-0 --mem=10G --ntasks=4 --wrap="R CMD BATCH \"--args 4 
+./Code/Parameters/EXP4/d-${d}/ 
+./Results/EXP4/ 
+~/R/x86_64-pc-linux-gnu-library/3.4/ 
+50\" Code/CTSim/exec/run_simulation.R EXP4_d-${d}.Rout"; done
+
+sbatch -J $d --time=3-0 --mem=10G --ntasks=4 --wrap="R CMD BATCH \"--args 4 
+./Code/Parameters/EXP4/d-g2/ ./Results/Summary/EXP4/ ~/R/x86_64-pc-linux-gnu-library/3.4/ 50\" 
+./Code/CTSim/exec/run_simulation.R EXP4_d-g2.Rout"
+
+
+for f in Results/EXP4/* ;
+do sbatch -J $f --time=5-0 --mem=10G --ntasks=4 --wrap="R CMD BATCH \"--args $f Code/Parameters/EXP4/summary/ Summaries/$f/ ~/R/x86_64-pc-linux-gnu-library/3.4/" Code/CTSim/exec/summarize_simulation.R $f_sum.Rout"; done
+
+for f in Results/EXP4/*; do sbatch -J $f --time=5-0 --mem=10G --ntasks=4 --wrap="R CMD BATCH\"--args 4 ./Results/EXP4/${f}/ ./Code/Parameters/EXP4/summary/ ./Results/Summary/EXP4/ ~/R/x86_64-pc-linux-gnu-library/3.4/" ./Code/CTSim/exec/summarize_simulation.R ${f}_sum.Rout"; done
+
+sbatch --time=5-0 --mem=10G --ntasks=4 --wrap="R CMD BATCH --args 
+./Results/EXP4/d-g8_hp-1/ 
+re 
+./Results/Summary/EXP4/ 
+~/R/x86_64-pc-linux-gnu-library/3.4/ 
+Code/CTSim/exec/summarize_simulation.R d-g8_hp-1_sum.Rout"
+
+sbatch --time=5-0 --mem=10G --ntasks=4 --wrap="R CMD BATCH --args ./Results/EXP4/d-g8_hp-1/ ./Results/Summary/EXP4/ ~/R/x86_64-pc-linux-gnu-library/3.4/ ./Code/CTSim/exec/summarize_simulation.R d-g8_hp-1_sum.Rout"
+
+# Summarize EXP 4 sims from CTSim d
+for f in Results/EXP4/* do RUNID="$(echo $f | cut -f3 -d"/")" sbatch --time=7-0 R CMD BATCH "--args $f Parameters/EXP4/summary Summaries/EXP4/$RUNID ~/R/x86_64-pc-linux-gnu-library/3.4/" summarize_simulation.R "$RUNID"_sum.Rout done
+
+#TEST 
+for f in Results/EXP3/* ; do RUNID="$(echo $f | cut -f3 -d"/")"  sbatch -J $d --time=3-0 --mem=10G --ntasks=4 --wrap="R CMD BATCH \"--args $f Parameters/EXP3/summary Summaries/EXP3/$RUNID ~/R/x86_64-pc-linux-gnu-library/3.4/" summarize_simulation.R "$RUNID"_sum.Rout"; done
