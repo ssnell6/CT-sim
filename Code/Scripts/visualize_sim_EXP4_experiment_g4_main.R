@@ -910,7 +910,7 @@ tcore_det_single = xclass.sp %>%
   ggplot(aes(p, mean_perc_ncore)) + 
   geom_point(size =5, col = "goldenrod2", aes(shape = `Landscape \nsimilarity`)) + 
   geom_line(lwd = 1.5,col = "goldenrod2", aes(lty = `Landscape \nsimilarity`)) +
-  scale_y_continuous(limits = c(0, 0.8)) +
+  scale_y_continuous(limits = c(0, 0.8), labels = c("0%", "20%", "40%", "60%", "80%")) +
   scale_shape_manual(values = c(15, 16)) +
   xlab("Detection probability") + ylab("Core species: % incorrect") +
   theme(axis.title.x=element_text(size=30),axis.title.y=element_text(size=30),axis.text.x=element_text(size=25),axis.text.y=element_text(size=25), legend.text=element_text(size=25, hjust = 1, vjust = 0.5), legend.title=element_text(size = 20)) 
@@ -934,7 +934,7 @@ ttrans_det_single = xclass.sp %>%
   ggplot(aes(p, mean_perc_ntrans)) + 
   geom_point(size =5, col = "goldenrod2", aes(shape = `Landscape \nsimilarity`)) + 
   geom_line(lwd = 1.5,col = "goldenrod2", aes(lty = `Landscape \nsimilarity`)) +
-  scale_y_continuous(limits = c(0, 0.8)) +
+  scale_y_continuous(limits = c(0, 0.8), labels = c("0%", "20%", "40%", "60%", "80%")) +
   scale_shape_manual(values = c(15, 16)) +
   xlab("Detection probability") + ylab("Transient species: % incorrect") +
   theme(axis.title.x=element_text(size=30),axis.title.y=element_text(size=30),axis.text.x=element_text(size=25),axis.text.y=element_text(size=25), legend.text=element_text(size=25, hjust = 1, vjust = 0.5), legend.title=element_text(size = 20)) 
@@ -959,7 +959,7 @@ tcore_ls_single = xclass.sp %>%
   ggplot(aes(landscape_bin, mean_perc_ncore)) + 
   geom_point(size =5, aes(shape = `Detection`)) + 
   geom_line(lwd = 1.5,aes(lty = `Detection`)) +
-  scale_y_continuous(limits = c(0, 0.8)) +
+  scale_y_continuous(limits = c(0, 0.8),  labels = c("0%", "20%", "40%", "60%", "80%")) +
   scale_shape_manual(values = c(15, 16)) +
   xlab("Landscape similarity") + ylab("Core species: % incorrect") +
   theme(axis.title.x=element_text(size=30),axis.title.y=element_text(size=30), axis.text.x=element_text(size=25),axis.text.y=element_text(size=25),legend.text=element_text(size=25, hjust = 1, vjust = 0.5), legend.title=element_text(size = 20)) 
@@ -982,7 +982,7 @@ ttrans_ls_single = xclass.sp %>%
   mutate(`Detection` = as.factor(p)) %>%
   ggplot(aes(landscape_bin, mean_perc_ntrans)) + 
   geom_point(size =5, aes(shape = `Detection`)) + 
-  scale_y_continuous(limits = c(0, 0.8)) +
+  scale_y_continuous(limits = c(0, 0.8),  labels = c("0%", "20%", "40%", "60%", "80%")) +
   geom_line(lwd = 1.5,aes(lty = `Detection`)) +
   scale_shape_manual(values = c(15, 16)) +
   xlab("Landscape similarity") + ylab("Transient species: % incorrect") +
