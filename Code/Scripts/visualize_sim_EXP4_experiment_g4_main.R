@@ -1103,7 +1103,7 @@ ggplot(aes((log10(Ngrid/max(Ngrid))), correct), data = vplot) +
  geom_vline(xintercept = log10(18053.63/max(vplot$Ngrid)), lwd = 1.25, linetype = "dashed") +
   theme_classic() + 
   theme(axis.text.x=element_text(size=25),axis.text.y=element_text(size=25)) + 
-  scale_x_continuous(breaks = log10(c(0.01, 0.03, 0.1, 0.3, 1)), label = c("1%", "3%", "10%", "30%", "100%")) +
+  scale_x_continuous(breaks = log10(c(0.01, 0.01, 0.1, 0.3, 1)), label = c("1%", "3%", "10%", "30%", "100%")) +
   scale_y_continuous(breaks = c(0, 0.25, 0.5, 0.75, 1), label = c("0%", "25%", "50%", "75%", "100%")) +
   xlab("Relative abundance") + ylab("Probability of correct classification") + 
   theme(axis.title.x=element_text(size=30),axis.title.y=element_text(size=30), legend.text=element_blank(), legend.title=element_blank())
@@ -1124,58 +1124,60 @@ x <- (log(p/(1-p)) - coef(logitMod)[1]) / coef(logitMod)[2]
 relabundances = seq(0.01, 1.0, by = .01)
 # for all species with abundance greater than this threshold, what % of them were misclassified?
 
-# t <- data.frame("rel_abun_bins" = i, "e_rate" = e_rate)
-# for(i in relabundances){
-#   v = filter(vplot, Ngrid/max(Ngrid) > i)
-#   e_rate = length(v$class[v$class == "Incorrect"])/length(v$class[v$class == "Correct"])
-#   t = rbind(t, c(i, e_rate))
-# }
-# t$rel_abun_bins <- as.factor(t$rel_abun_bins)
-
-# t2 <- vplot %>%
-#   mutate(rel_abun = Ngrid/max(Ngrid),
-#          rel_abun_bins = as.factor(round(rel_abun, digits = 1))) %>%
-#   left_join(t, by = "rel_abun_bins")
-
-# ggplot(aes(rel_abun_bins, e_rate), data = t2) +
-#   geom_jitter(pch = 16, size = 2, width = 0.4, height = 0.01, alpha = 0.6) +
-#   theme_classic() +
-#   theme(axis.text.x=element_text(size=25),axis.text.y=element_text(size=25)) +
-#   # scale_x_continuous(breaks = log10(c(0.01, 0.03, 0.1, 0.3, 1)), label = c("1%", "3%", "10%", "30%", "100%")) +
-#   scale_y_continuous(breaks = c(0, 0.1, 0.2, 0.3), label =  c("0%", "10%",  "20%", "30%")) +
-#   xlab("Relative abundance") + ylab("Error rate") +
-#   theme(axis.title.x=element_text(size=30),axis.title.y=element_text(size=30), legend.text=element_blank(), legend.title=element_blank())
+# # t <- data.frame("rel_abun_bins" = i, "e_rate" = e_rate)
+# # for(i in relabundances){
+# #   v = filter(vplot, Ngrid/max(Ngrid) > i)
+# #   e_rate = length(v$class[v$class == "Incorrect"])/length(v$class[v$class == "Correct"])
+# #   t = rbind(t, c(i, e_rate))
+# # }
+# # t$rel_abun_bins <- as.factor(t$rel_abun_bins)
 # 
-# n_correct <- vplot %>%
-#   mutate(rel_abun = (Ngrid/max(Ngrid))*20,
-#          rel_bins =round(rel_abun, digits = 0),
-#          rel_abun_bins = rel_bins/20) %>%
-#   group_by(rel_abun_bins) %>%
-#   count(correct) %>%
-#   filter(correct == 1)
+# # t2 <- vplot %>%
+# #   mutate(rel_abun = Ngrid/max(Ngrid),
+# #          rel_abun_bins = as.factor(round(rel_abun, digits = 1))) %>%
+# #   left_join(t, by = "rel_abun_bins")
 # 
-# t2 <- vplot %>%
-#   mutate(rel_abun = (Ngrid/max(Ngrid))*20,
-#          rel_bins =round(rel_abun, digits = 0),
-#          rel_abun_bins = rel_bins/20) %>%
-#   group_by(rel_abun_bins) %>%
-#   count(correct) %>%
-#   group_by(rel_abun_bins) %>%
-#   summarise(sum = sum(n))
+# # ggplot(aes(rel_abun_bins, e_rate), data = t2) +
+# #   geom_jitter(pch = 16, size = 2, width = 0.4, height = 0.01, alpha = 0.6) +
+# #   theme_classic() +
+# #   theme(axis.text.x=element_text(size=25),axis.text.y=element_text(size=25)) +
+# #   # scale_x_continuous(breaks = log10(c(0.01, 0.03, 0.1, 0.3, 1)), label = c("1%", "3%", "10%", "30%", "100%")) +
+# #   scale_y_continuous(breaks = c(0, 0.1, 0.2, 0.3), label =  c("0%", "10%",  "20%", "30%")) +
+# #   xlab("Relative abundance") + ylab("Error rate") +
+# #   theme(axis.title.x=element_text(size=30),axis.title.y=element_text(size=30), legend.text=element_blank(), legend.title=element_blank())
+# # 
+# # n_correct <- vplot %>%
+# #   mutate(rel_abun = (Ngrid/max(Ngrid))*20,
+# #          rel_bins =round(rel_abun, digits = 0),
+# #          rel_abun_bins = rel_bins/20) %>%
+# #   group_by(rel_abun_bins) %>%
+# #   count(correct) %>%
+# #   filter(correct == 1)
+# # 
+# # t2 <- vplot %>%
+# #   mutate(rel_abun = (Ngrid/max(Ngrid))*20,
+# #          rel_bins =round(rel_abun, digits = 0),
+# #          rel_abun_bins = rel_bins/20) %>%
+# #   group_by(rel_abun_bins) %>%
+# #   count(correct) %>%
+# #   group_by(rel_abun_bins) %>%
+# #   summarise(sum = sum(n))
+# # 
+# # t3 <- full_join(n_correct, t2, by = "rel_abun_bins") %>%
+# #   mutate(perc_correct = n/sum)
+# # t3$rel_abun_bins_5 = if_else(t3$rel_abun_bins > 0.5, 0.5, t3$rel_abun_bins)
+# # t3$rel_abun_bins_5 = as.factor(t3$rel_abun_bins_5)
+# # 
+# # ggplot(aes(rel_abun_bins_5, perc_correct), data = t3) +
+# #   geom_point(size = 4) +
+# #   theme_classic() +
+# #   theme(axis.text.x=element_text(size=25),axis.text.y=element_text(size=25)) +
+# #   xlab("Relative abundance") + ylab("Percent correct") +
+# #   theme(axis.title.x=element_text(size=30),axis.title.y=element_text(size=30), legend.text=element_blank(), legend.title=element_blank())
 # 
-# t3 <- full_join(n_correct, t2, by = "rel_abun_bins") %>%
-#   mutate(perc_correct = n/sum)
-# t3$rel_abun_bins_5 = if_else(t3$rel_abun_bins > 0.5, 0.5, t3$rel_abun_bins)
-# t3$rel_abun_bins_5 = as.factor(t3$rel_abun_bins_5)
-# 
-# ggplot(aes(rel_abun_bins_5, perc_correct), data = t3) +
-#   geom_point(size = 4) +
-#   theme_classic() +
-#   theme(axis.text.x=element_text(size=25),axis.text.y=element_text(size=25)) +
-#   xlab("Relative abundance") + ylab("Percent correct") +
-#   theme(axis.title.x=element_text(size=30),axis.title.y=element_text(size=30), legend.text=element_blank(), legend.title=element_blank())
-
 # ( species misclassified whose abundances were > 12%) / (total  species whose abundances were > 12%)
+a <- filter(vplot, correct == 0 & Ngrid > 18053.63)
+b <- filter(vplot, Ngrid > 18053.63)
 
 #### Figure S2 ####
 ncore = xclass.sp %>%
